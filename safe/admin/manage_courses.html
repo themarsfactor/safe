@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Courses</title>
+    <!-- Bootstrap CSS-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    
+    <!-- Animate CSS-->
+    <link href="../css/animate.css" rel="stylesheet" type="text/css">
+    
+    <!-- Fontawesome CSS-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    
+    <link href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- Page level plugin JavaScript-->
+    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Main CSS-->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Main CSS-->
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <style>
+
+    </style>
+</head>
+
+<body id="contact">
+      
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Project SAFe®</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="#">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="sidebar-sticky pt-3">
+          <ul class="nav flex-column mx-auto">
+                <li class="nav-item active"> <a class=" active" href="../admin.html"><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</a> </li>
+                <li class="nav-item"> <a href="#courseSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-book" aria-hidden="true"></i> Course Control</a>
+                    <ul class="collapse list-unstyled" id="courseSubmenu">
+                        <li class="nav-item"> <a href="create_course.html"><i class="fa fa-plus" aria-hidden="true"></i> Create Course</a> </li>
+                        <li class="nav-item"> <a href="manage_courses.html"><i class="fa fa-sliders" aria-hidden="true"></i> Manage Courses</a> </li>
+                    </ul>
+                </li>
+                <li class="nav-item"> <a href="user.html"><i class="fa fa-users" aria-hidden="true"></i> Users</a> </li>
+                
+                <li class="nav-item"><a href="profile.html"><i class="fa fa-male" aria-hidden="true"></i> Manage Profile</a> </li>
+                <li class="nav-item"> <a href="create_schedule.html"><i class="fa fa-calendar" aria-hidden="true"></i> Create Schedule</a> </li>
+            </ul>
+  
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="list-unstyled SAFe®">
+              <li class=""> <a href="#" class="download"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a> </li>
+          </ul>
+        </div>
+      </nav>
+
+
+
+      
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-custom">
+                <li class="breadcrumb-item"><a href="../admin.html" data-abc="true">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span>Manage Courses</span></li>
+            </ol>
+        </nav>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Manage Courses</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              This week
+            </button>
+          </div>
+        </div>
+  
+
+
+        <div class="container table-responsive">
+            <table class="table table-striped table-bordered table-sm" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                    <th>SN</th>
+                    <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th>Students Enrolled</th>
+                    <th>Number Of Schedule</th>
+                    <th>Schedule Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                     <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>61</td>
+                      <td>6</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>630</td>
+                      <td>63</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                   <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>669</td>
+                      <td>66</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>22</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>3</td>
+                      <td></td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>61</td>
+                      <td>6</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>59</td>
+                      <td>5</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>55</td>
+                      <td>5</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>39</td>
+                      <td>3</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>23</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                   <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>30</td>
+                      <td>3</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>22</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>36</td>
+                      <td>3</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>43</td>
+                      <td>4</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>19</td>
+                      <td>1</td>
+                      <td>
+                          <td>SOT201</td>
+                          <a hInvolzving PHP102 indepth and Certification<ents
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>66</td>
+                      <td>6</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>64</td>
+                      <td>6</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>59</td>
+                      <td>5</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>41</td>
+                      <td>4</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>35</td>
+                      <td>3</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>30</td>
+                      <td>3</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>40</td>
+                      <td>4</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>21</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                   <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>23</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>47</td>
+                      <td>4</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                   <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>42</td>
+                      <td>4</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>28</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                      <td>Software Engineering</td>
+                      <td>SOT201</td>
+                      <td>28</td>
+                      <td>2</td>
+                      <td>
+                          <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#staticBackdrop">Manage</button>
+                          <a href="view_schedule.html" class="btn btn-sm btn-primary">View</a>
+                      </td>
+                  </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                    <th>SN</th>
+                    <th>Course Title</th>
+                    <th>Course Code</th>
+                    <th>Students Enrolled</th>
+                    <th>Number Of Schedule</th>
+                    <th>Schedule Action</th>
+                  </tr>
+              </tfoot>
+          </table>
+      </div>
+
+      </main>
+    </div>
+  </div>
+  
+  
+
+
+
+
+
+  
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+      <div class="modal-content border-0">
+          <div class="modal-body p-0">
+              <div class="card border-0 p-sm-2 p-2 justify-content-center">
+                  <div class="card-header pb-0 bg-white border-0 ">
+                    <h1 class="h2">Manage <span><i>NET 102</i></span></h1>
+                      <div class="row">
+                          <div class="col ml-auto">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> 
+                            </button>
+                          </div>
+                      <div class="col-md-12 row">
+                        <div class="col-md-6">
+                          <div class="card my-form mx-auto mb-2">
+                        <form method="POST">
+                          <label><p>Course Title</p></label>
+                        <div class="input-group"> 
+                          <input class="form-control" type="text" placeholder="Software Engineering" name="courseTitle">
+                        </div>
+                        <label><p>Course Code</p></label>
+                        <div class="input-group"> 
+                          <input class="form-control" type="text" placeholder="Net 102" name="courseCode"> 
+                        </div>
+                        <div class="extra"> 
+                          </div>
+                        <div class="p-t-10"> <button class="btn btn-primary btn-sm" type="submit" data-target="#">Update</button> </div>
+                        </form>
+                      </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="card my-form mb-2">
+                          
+                        <form method="POST">
+                        <div class="card-header">
+                            <h5>Upload course banner</h5>
+                        </div>
+                        <div class="card-block">
+                            <form action="#" class="dropzone dz-clickable">
+                                <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                            </form>
+                            <div class="text-center m-t-20">
+                                <button class="btn btn-primary">Upload Now</button>
+                            </div>
+                        </div>
+                        <div class="extra"> 
+                          </div>
+                        <div class="p-t-10"> <button class="btn btn-primary btn-sm" type="submit" data-target="#">Update</button> </div>
+                        </form>
+                      </div>
+                        </div>
+                      </div>
+                      <div class="col-md-12 row">
+                        <div class="col-md-6">
+                          <div class=" card my-form mb-2">
+                        <form method="POST">
+                        
+                          <label><p>Course Status</p></label>
+                        <div class="row input-group">
+                          <div class="col-md-6">
+                                <div class="form-check p-t-10">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                  <label class="form-check-label" for="exampleRadios2">
+                                    Private
+                                  </label>
+                                </div>
+                          </div>
+                          <div class="col-md-6"> 
+                                <div class="form-check p-t-10">
+                                  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                  <label class="form-check-label" for="exampleRadios1">
+                                    Public
+                                  </label>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="extra"> 
+                          </div>
+                        <div class="p-t-10"> <button class="btn btn-primary btn-sm" type="submit" data-target="#">Update</button> </div>
+                        </form>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class=" card my-form mb-2">
+                              <form method="POST">
+                                <div class="card-header">
+                                    <h5>Upload course video Advert</h5>
+                                </div>
+                                <div class="card-block">
+                                    <form action="#" class="dropzone dz-clickable">
+                                        <div class="dz-default dz-message"><span>Drop files here to upload</span></div>
+                                    </form>
+                                    <div class="text-center m-t-20">
+                                        <button class="btn btn-primary">Upload Now</button>
+                                    </div>
+                                </div>
+                                <div class="extra"> 
+                                  </div>
+                                <div class="p-t-10"> <button class="btn btn-primary btn-sm" type="submit" data-target="#">Update</button> </div>
+                                </form>
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                  <div class="alert alert-warning alert-dismissible mt-3 container-fluid" role="alert">
+                    <button type="button" onclick="this.parentNode.parentNode.removeChild(this.parentNode);" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <strong><i class="fa fa-warning"></i> Notice!</strong> 
+                    Deleting a course would wipe out all that pertains to it. Do not use this feature except you are entirely sure of it!
+                    <div class="row no-gutters">
+                      <div class="col-auto"><button type="button" class="btn btn-light text-muted mx-4" data-dismiss="modal">Cancel</button></div>
+                      <div class="col-auto"><button type="button" class="btn btn-danger px-4" data-dismiss="modal">Delete</button></div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <script>
+      
+  // for data tables
+  $(document).ready(function() {
+              $('#dataTable').DataTable();
+        });
+  </script>
+
+  <script type="text/javascript" src="../js/scripts.js"></script>
+    
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
